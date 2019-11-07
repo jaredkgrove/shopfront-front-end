@@ -20,3 +20,28 @@
 .App-link {
   color: #09d3ac;
 }
+
+@keyframes cf3FadeInOut {
+  0% {
+  opacity:0.1;
+}
+10% {
+  opacity: 1;
+}
+
+90% {
+opacity:1;
+}
+100% {
+opacity:0.1;
+}
+
+}
+
+.cycle {
+  animation-name: cf3FadeInOut;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+  /* animation-direction: alternate; */
+}
