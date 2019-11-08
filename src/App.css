@@ -23,9 +23,9 @@
 
 @keyframes cf3FadeInOut {
   0% {
-  opacity:0.1;
+  opacity:0;
 }
-10% {
+30% {
   opacity: 1;
 }
 
@@ -33,15 +33,7 @@
 opacity:1;
 }
 100% {
-opacity:0.1;
+opacity:0;
 }
 
-}
-
-.cycle {
-  animation-name: cf3FadeInOut;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-duration: 3s;
-  /* animation-direction: alternate; */
 }

@@ -1,14 +1,43 @@
 import React, { useState, useEffect, useRef } from "react";
-// import Link from 'react'
+import Fade from "@material-ui/core/Fade";
+
 import fetchJsonp from 'fetch-jsonp'
 
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link'
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles({
+    card: {
+      width: 345,
+    },
+    
+    media: {
+      height: 240,
+    },
+
+    cycle:{
+        animationName: 'cf3FadeInOut',
+        animationTimingFunction: 'ease-in-out',
+        animationIterationCount: 'infinite',
+        animationDuration: '3s',
+    },
+
+  });
 
     const Listing = (props) => {
         const [images, setImages] = useState([]);
         const [currentImage, setCurrentImage] = useState({index:-1, data:{}})
         const [cycleImages, setCycleImages] = useState(false)
-        const imgTag = useRef()
-
+        const imagesWrapper = useRef()
+        const classes = useStyles();
+        const preventDefault = event => event.preventDefault();
 
         useEffect(() =>{
             async function fetchData() {
@@ -30,6 +59,7 @@ import fetchJsonp from 'fetch-jsonp'
 
         useEffect(() => {
             if(cycleImages){
+                setCurrentImage({index:1, data:images[1]})
                 const id = setInterval(() => {
                     setCurrentImage((prevImage) => {
                         let index = prevImage.index + 1
@@ -53,17 +83,29 @@ import fetchJsonp from 'fetch-jsonp'
             setCurrentImage({index:0, data:images[0]})
         } 
 
-        const renderImage = () => {
-            if(currentImage){
-                    return <img src={currentImage.data.url_570xN} ref={imgTag} className={cycleImages ? "cycle" : "image"} onMouseEnter={handleMouseOver} onMouseLeave={defaultImage} alt="" style={{float:'left', clear:'both', width:'300px', opacity:'1', transition: 'opacity 500ms 500ms'}}/>
-
-            }
-        }
     return(   
-        <div className='listing-container'>
-            <a href={props.listingData.url} target="_blank" style={{float:'left', clear:'both'}}>{props.listingData.title}</a>
-            {renderImage()}
-        </div>
+        <Grid key={props.listingData.listing_id} item>
+        <Card className={classes.card} onMouseEnter={handleMouseOver} onMouseLeave={defaultImage}>
+            
+            <CardActionArea>
+                <CardMedia
+                    className={classes.media + (cycleImages ? ` ${classes.cycle}`: '') }
+                    image={currentImage.data ? currentImage.data.url_570xN:''}
+                    title="Contemplative Reptile"
+                />
+            </CardActionArea>
+            <CardActions>
+                <Link href={props.listingData.url} target="_blank" >
+                    <Button size="small" color="primary">
+                        Buy
+                    </Button>
+                </Link>
+                <Button size="small" color="primary">
+                    Learn More
+                </Button>
+            </CardActions>
+        </Card>
+        </Grid>
      )
     }
 
