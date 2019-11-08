@@ -5,26 +5,31 @@ import ReactDOM from 'react-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';  
 import './index.css';
 import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 
 const theme = createMuiTheme({
    palette: {
       primary: {
-         main: 'hsl(98, 19%, 58%)',
+        main: 'hsl(187, 52%, 80%)',
+        grey: 'hsl(187, 5%, 90%)',
       },
       secondary: {
-        main: 'hsl(60,60%,60%)',
-        // light: 'blue'
+        main: 'hsl(57, 52%, 75%)',
       },
    },
-//    typography: { 
-//       useNextVariants: true
-//    }
+   typography: { 
+      useNextVariants: true
+   }
 });
 
 ReactDOM.render(
-   <MuiThemeProvider theme = { theme }>
-      <App />
-   </MuiThemeProvider>, 
+    <Router >
+        <MuiThemeProvider theme = { theme }>
+            <App />
+        </MuiThemeProvider>
+   </Router >,
+
    document.getElementById('root')
 );
 
