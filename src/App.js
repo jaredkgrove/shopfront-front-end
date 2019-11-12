@@ -1,10 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import ProductsList from './containers/ProductsList'
+import ProductsView from './views/ProductsView'
 import HomeView from './views/HomeView'
+
 import Header from './containers/Header'
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Route } from 'react-router-dom';
 
 
@@ -19,11 +19,11 @@ const useStyles = makeStyles(theme => ({
 function App() {
   const classes = useStyles();
   return (
-    <div className={classes.app} style={{height:'100vh'}}>
+    <div className={classes.app} >
       <Header/>
       
-      <Route exact path='/' render= {routerProps => <HomeView/>}/>
-      <Route exact path='/products' render= {routerProps => <ProductsList {...routerProps} />}/>
+      <Route exact path='/' render= {routerProps => <HomeView {...routerProps}/>}/>
+      <Route path='/products' render= {routerProps => <ProductsView {...routerProps} />}/>
 
     </div>
   );

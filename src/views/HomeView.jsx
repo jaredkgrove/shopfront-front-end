@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React  from "react";
 import Paper from "@material-ui/core/Paper"
 
-const ProductsList = () => {
+const HomeView = () => {
       
         return(
             <Paper> WE ARE J+B</Paper>
@@ -9,6 +9,6 @@ const ProductsList = () => {
 }
 
 
-export default ProductsList
+export default HomeView
 
 
