@@ -11,8 +11,9 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import listingReducer from './reducers/listingReducer.js'; 
+import postsReducer from './reducers/postsReducer.js';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const rootReducer = combineReducers({listings: listingReducer})
+const rootReducer = combineReducers({listings: listingReducer, posts: postsReducer})
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 const theme = createMuiTheme({

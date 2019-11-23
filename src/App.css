@@ -1,20 +1,10 @@
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -23,27 +13,52 @@
 
 @keyframes fadeInOut {
   0% {
-  opacity:0;
-}
-16% {
-  opacity: 1;
-}
-
-84% {
-opacity:1;
-}
-100% {
-opacity:0;
-}
-
+    opacity:0;
+  }
+  16% {
+    opacity: 1;
+  }
+  84% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
 }
 
 @keyframes fadeIn {
   0% {
-  opacity:0;
-}
-100% {
-opacity:1;
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }
 
+@keyframes delayFadeIn {
+  0% {
+    opacity:0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+div::-webkit-scrollbar {
+  width: 8px;
+}
+
+div::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+div::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+div::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

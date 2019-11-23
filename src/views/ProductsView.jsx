@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import ProductsList from "../containers/ProductsList";
 import { Route } from 'react-router-dom';
@@ -13,11 +13,31 @@ const useStyles = makeStyles(theme => ({
     
     root: {
       flexGrow: 1,
-     
+      height: '88vh'
+
     },
-    control: {
-      padding: theme.spacing(2)
+    animate:{
+        transition: 'flex-basis 500ms ease-in-out',
     },
+    fadeIn:{
+      animationName: 'delayFadeIn',
+      animationTimingFunction: 'ease-in',
+      animationIterationCount: '1',
+      animationDuration: '1s',
+    },
+    full:{
+        flexBasis:'100%',
+    },
+    
+    side:{
+        flexBasis:'25%',
+    },
+    scroll:{
+      overflow: 'auto',
+      maxHeight: '90vh'
+    },
+
+
     
   }));
 
@@ -25,27 +45,25 @@ const ProductView = (props) => {
     const classes = useStyles();
 
     useEffect(() => {
+      if(!props.listings.length){
         props.fetchShopListings()
+      }
     },[])
-
-    useEffect(() => {
-
-    },[props.listings])
 
     return(
         <Grid className={classes.root} container>
-            <Grid item xs={props.location.pathname === props.match.path ? 12:3}>
-                <ProductsList className={classes.products} listings={props.listings} />
+            <Grid container justify="space-around" className={props.location.pathname === props.match.path ? `${classes.animate} ${classes.scroll} ${classes.full}`:`${classes.animate} ${classes.scroll} ${classes.side}`}>
+                <ProductsList listings={props.listings} />
             </Grid>
             <Route exact path='/products/:etsyId' render= {routerProps =>             
-                <Grid item xs={9}>
-
-                    <ListingView listingData={props.listings[props.listings.findIndex(listing => listing.listing_id == routerProps.match.params.etsyId)]} {...routerProps} />
-                </Grid>}
+              <Grid container className={classes.scroll && classes.fadeIn} xs={9} justify="space-around" >
+                  <ListingView listingData={props.listings[props.listings.findIndex(listing => listing.listing_id == routerProps.match.params.etsyId)]} {...routerProps} />
+              </Grid>}
             />
         </Grid>
     )
 }
+
 
 const mapDispatchToProps = dispatch => {
     return {

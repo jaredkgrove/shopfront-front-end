@@ -19,14 +19,16 @@ import { connect } from 'react-redux';
 const useStyles = makeStyles({
     card: {
       width: 345,
+      maxWidth: '95%',
+      maxHeight: 290
     },
     
     media: {
       height: 240,
-      animationName: 'fadeIn',
-      animationTimingFunction: 'ease-in',
-      animationIterationCount: '1',
-      animationDuration: '0.5s',
+    //   animationName: 'fadeIn',
+    //   animationTimingFunction: 'ease-in',
+    //   animationIterationCount: '1',
+    //   animationDuration: '0.5s',
     },
 
     cycle:{
@@ -45,7 +47,6 @@ const useStyles = makeStyles({
         const classes = useStyles();
 
         useEffect(() =>{
-            console.log(listingData.images)
             if(!listingData.images){
                 fetchListingImages(listingData.listing_id)
             }
@@ -90,7 +91,6 @@ const useStyles = makeStyles({
         } 
 
     return(   
-        <Grid key={listingData.listing_id} item>
         <Card className={classes.card} onMouseEnter={handleMouseOver} onMouseLeave={defaultImage}>
             
             <CardActionArea>
@@ -98,6 +98,8 @@ const useStyles = makeStyles({
                     className={(cycleImages ? `${classes.cycle}`: `${classes.media}`) }
                     image={currentImage ? currentImage.url_570xN : ''}
                     title={listingData.title}
+                    component={NavLink} 
+                    to={`/products/${listingData.listing_id}`}
                 />
             </CardActionArea>
             <CardActions>
@@ -111,8 +113,6 @@ const useStyles = makeStyles({
                 </Button>
             </CardActions>
         </Card>
-        
-        </Grid>
      )
     }
 

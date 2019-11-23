@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -25,6 +25,7 @@ const StyledTabs = withStyles(theme => ({
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: theme.typography.pxToRem(20),
       marginRight: theme.spacing(1),
+
       "&:focus": {
         opacity: 1
       }
@@ -34,30 +35,31 @@ const StyledTabs = withStyles(theme => ({
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
-    },
-    padding: {
+      backgroundColor: theme.palette.primary.grey,
       padding: theme.spacing(1),
       marginBottom: theme.spacing(3)
     },
-
-    demo2: {
-      backgroundColor: theme.palette.primary.grey
-    }
+    
   }));
 
-const Header = () => {
+const Header = (props) => {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
+    useEffect(() => {
+       if(props.location.pathname.includes('products')){
+          setValue(1)
+       }
+    },[])
+
     const handleChange = (event, newValue) => {
+      console.log(newValue)
         setValue(newValue);
-        
     };
   
     return (
-      <div className={classes.root}>
-        <div className={classes.demo2}>
-          <StyledTabs
+      <div className={classes.root} style={{boxSizing: 'border-box', padding: '0', margin:'0', height:'10vh'}}>
+          <StyledTabs 
             value={value}
             onChange={handleChange}
             aria-label="styled tabs example"
@@ -66,9 +68,7 @@ const Header = () => {
             <StyledTab label="Home"  component={NavLink} to="/"/>
             <StyledTab label="Products" component={NavLink} to="/products"/>
           </StyledTabs>
-          <Typography className={classes.padding} />
-        </div>
-      </div>
+       </div>
     );
 }
 
