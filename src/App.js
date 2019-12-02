@@ -21,14 +21,12 @@ const useStyles = makeStyles(theme => ({
 function App() {
   const classes = useStyles();
   return (
-    <>
-    </>
-    // <div className={classes.app} >
-    //   <Route path='/' render= {routerProps => <Header {...routerProps}/>}/>
+    <div className={classes.app} >
+      <Route path='/' render= {routerProps => <Header {...routerProps}/>}/>
       
-    //   <Route exact path='/' render= {routerProps => <HomeView {...routerProps}/>}/>
-    //   <Route path='/products' render= {routerProps => <ProductsView {...routerProps} />}/>
-    // </div>
+      <Route exact path='/' render= {routerProps => <HomeView {...routerProps}/>}/>
+      <Route path='/products' render= {routerProps => <ProductsView {...routerProps} />}/>
+    </div>
   );
 }
 
