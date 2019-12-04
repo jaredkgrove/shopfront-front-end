@@ -37,7 +37,7 @@ ReactDOM.render(
          <MuiThemeProvider theme = { theme }>
                <App />
          </MuiThemeProvider>
-      </Router >,
+      </Router >
    </Provider>,
 
    document.getElementById('root')

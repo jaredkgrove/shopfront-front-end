@@ -20,7 +20,9 @@ const useStyles = makeStyles({
     card: {
       width: 345,
       maxWidth: '95%',
-      maxHeight: 290
+      maxHeight: 290,
+      display: 'inline-block',
+      transition: 'client-left 500ms ease-in-out',
     },
     
     media: {

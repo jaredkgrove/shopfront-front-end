@@ -4,7 +4,6 @@ import ProductsList from "../containers/ProductsList";
 import { Route } from 'react-router-dom';
 import ListingView from './ListingView'
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 
 import {fetchShopListings} from '../actions/fetchShopListings'
 import { connect } from 'react-redux';
@@ -13,28 +12,40 @@ const useStyles = makeStyles(theme => ({
     
     root: {
       flexGrow: 1,
-      height: '88vh'
+      overflow: 'hidden',
+      bottom:'0px',
+      position:'absolute',
 
-    },
-    animate:{
-        transition: 'flex-basis 500ms ease-in-out',
     },
     fadeIn:{
       animationName: 'delayFadeIn',
       animationTimingFunction: 'ease-in',
       animationIterationCount: '1',
-      animationDuration: '1s',
+      animationDuration: '2s',
+      position: 'absolute',
+      width: '75%',
+      right: '0px',
+      top: '0px'
     },
     full:{
-        flexBasis:'100%',
+      overflow:'scroll ',
+      height:'100vh',
+      width:'100vw',
+      display: 'flex',
+      justifyContent: 'space-around'
     },
     
     side:{
-        flexBasis:'25%',
+      animationName: 'productListFullToSide',
+      animationTimingFunction: 'ease-in',
+      animationIterationCount: '1',
+      animationDuration: '2s',
+      animationFillMode: 'forwards',  
+      overflow:'scroll ',
     },
     scroll:{
-      overflow: 'auto',
-      maxHeight: '90vh'
+      // overflow: 'auto',
+      // maxHeight: '90vh'
     },
 
 
@@ -51,16 +62,16 @@ const ProductView = (props) => {
     },[])
 
     return(
-        <Grid className={classes.root} container>
-            <Grid container justify="space-around" className={props.location.pathname === props.match.path ? `${classes.animate} ${classes.scroll} ${classes.full}`:`${classes.animate} ${classes.scroll} ${classes.side}`}>
-                <ProductsList listings={props.listings} />
-            </Grid>
+        <div className={classes.root}>
+                <div className={props.location.pathname === props.match.path ? `${classes.animate} ${classes.scroll} ${classes.full}`:`${classes.animate} ${classes.scroll} ${classes.side}`}>
+                  <ProductsList listings={props.listings} />
+                </div>
             <Route exact path='/products/:etsyId' render= {routerProps =>             
-              <Grid container className={classes.scroll && classes.fadeIn} xs={9} justify="space-around" >
+              <div className={classes.scroll && classes.fadeIn} >
                   <ListingView listingData={props.listings[props.listings.findIndex(listing => listing.listing_id == routerProps.match.params.etsyId)]} {...routerProps} />
-              </Grid>}
+              </div>}
             />
-        </Grid>
+          </div>
     )
 }
 

@@ -1,20 +1,16 @@
 import React, {useEffect} from "react";
+import { Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 import welcomeImage from '../images/welcome.jpg'
 
 const useStyles = makeStyles(theme => ({
     root: {
-        transition: 'height 500ms ease-in-out, opacity 500ms ease-in-out',
+        // transition: 'height 500ms ease-in-out, opacity 500ms ease-in-out',
         height: '100vh',
         background: `url(${welcomeImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-    },
-    hidden: {
-        height: '0px',
-        opacity:'0',
-
     },
     title: {
         top:'0px',
@@ -54,10 +50,10 @@ const WelcomeHeader = ({visible, goToView}) => {
     return(
 
         <>
-            <div className={visible ? classes.root:`${classes.root} ${classes.hidden}`}>
+            <div className={classes.root}>
                 <div className={classes.title}>J&B</div>
                 <div className={classes.subtitle}>Simple Modern Handmade</div>
-                <div className={classes.buttonContainer}><button className={classes.button} onClick={goToView}> Learn More </button></div>
+                <div className={classes.buttonContainer}><Link to='/products' className={classes.button}> Learn More </Link></div>
             </div>
         </>
         
