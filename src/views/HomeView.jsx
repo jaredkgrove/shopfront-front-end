@@ -1,53 +1,50 @@
 import React, {useEffect}  from "react";
-import Paper from "@material-ui/core/Paper"
-import {fetchInstagramPosts} from '../actions/fetchInstagramPosts'
-import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles } from "@material-ui/core/styles";
+import InstagramFeed from "../containers/InstagramFeed";
+import WelcomeHeader from "../components/WelcomeHeader";
 
+const useStyles = makeStyles(theme => ({
+  app: {
+    backgroundColor: theme.palette.primary.grey,
+    height:'101vh',
+    overflow: 'auto'
+  },
 
-const HomeView = ({fetchInstagramPosts, posts}) => {
-    useEffect(() => {
-        fetchInstagramPosts()
-    }, []);
+}));
 
-    useEffect(() => {
-      if(window.instgrm){
-        window.instgrm.Embeds.process()
+const HomeView = () => {
+  const [currentView, setCurrentView] = React.useState(0);
+  const classes = useStyles();
 
-      }
-    });
-
-    const getHTML = (post) => {
-      return {__html: post}
+  const handleScroll = (e) => {
+    if(e.deltaY > 0){
+      nextView()
+    }else{
+      previousView()
     }
+  }
 
-    const renderInsta = (post) => {
-      return <div dangerouslySetInnerHTML={getHTML(post)} />
+  const nextView = () => {
+    if (currentView < 1){
+      setCurrentView(currentView + 1) 
     }
-        return(
-            <>
+  }
 
-                <Paper> WE ARE J+B</Paper>
-                <Grid container>
+  const previousView = () => {
+    if (currentView > 0){
+      setCurrentView(currentView - 1) 
+    }
+  }
+    return(
+        <div className={classes.app} onWheel={handleScroll}>
+          <WelcomeHeader visible={currentView === 0} goToView={nextView}/>
+          {/* <ProductsView visible={currentView === 1}/> */}
 
-                  {posts.map(post => renderInsta(post))}
-                </Grid>
-
-            </>
-        )
+          <InstagramFeed visible={currentView === 1}/>
+        </div>
+    )
 }
-const mapDispatchToProps = dispatch => {
-    return {
-      fetchInstagramPosts: () => dispatch(fetchInstagramPosts()),
-    }
-  }
 
-const mapStateToProps = state => {
-    return {
-        posts: state.posts
-    }
-  }
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeView)
+export default HomeView
 
 
