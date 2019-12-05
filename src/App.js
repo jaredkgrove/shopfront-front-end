@@ -11,9 +11,6 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 function App({location, match}) {
 
   return (
-    <>
-     {/* <div className={classes.app} > */}
-      {/* <Route path='/' render= {routerProps => <Header {...routerProps}/>}/> */}
       <TransitionGroup>
         <CSSTransition
                   key={location.pathname.split('/')[1]}
@@ -27,9 +24,6 @@ function App({location, match}) {
             {/* <Route render={() => <div>Not Found</div>} /> */}
         </CSSTransition>
       </TransitionGroup>
-      
-    {/* </div> */}
-    </>
   );
 }
 

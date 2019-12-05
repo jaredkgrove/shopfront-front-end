@@ -41,6 +41,7 @@ const useStyles = makeStyles(theme => ({
         opacity: '0.5',
         color: theme.palette.primary.grey,
         fontSize:'40px',
+        textDecoration: 'none'
     }
   }));
 
