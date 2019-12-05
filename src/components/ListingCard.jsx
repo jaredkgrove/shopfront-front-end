@@ -6,7 +6,6 @@ import {fetchListingImages} from '../actions/fetchListingImages'
 import { connect } from 'react-redux';
 import styled from 'styled-components'
 
-
 const ListingCard = ({listingData, fetchListingImages}) => {
     const [currentImage, setCurrentImage] = useState()
     const [cycleImages, setCycleImages] = useState(false)
