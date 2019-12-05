@@ -17,7 +17,7 @@ const ProductView = (props) => {
     },[])
 
     return(
-        <ProductViewWrapper>
+        <ProductViewWrapper className='products-view'>
           <ProductsListWrapper full={props.location.pathname === props.match.path}>
               <ProductsList listings={props.listings} />
           </ProductsListWrapper>

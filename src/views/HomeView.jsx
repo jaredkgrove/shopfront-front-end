@@ -4,11 +4,19 @@ import WelcomeHeader from "../components/WelcomeHeader";
 import ProductsView from "./ProductsView";
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components'
+import NavigationView from "./NavigationView";
+
 
 
 const HomeView = () => {
   const [currentView, setCurrentView] = React.useState(0);
-  let history = useHistory();
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setCurrentView(1) 
+    }, 5000);
+    return () => clearTimeout(id);
+  }, []);
 
   const handleScroll = (e) => {
     if(e.deltaY > 0){
@@ -20,20 +28,19 @@ const HomeView = () => {
 
   const nextView = () => {
     if (currentView < 1){
-       history.push({pathname:'/products'})
+      setCurrentView(currentView + 1) 
     }
   }
 
   const previousView = () => {
     if (currentView > 0){
-      // setCurrentView(currentView - 1) 
-      // history.push('/')
+      setCurrentView(currentView - 1) 
     }
   }
     return(
-        <Home onWheel={handleScroll}>
-          <WelcomeHeader visible={true}/>
-          {/* <ProductsView visible={currentView === 1}/> */}
+        <Home className='home-view' onWheel={handleScroll}>
+          <WelcomeHeader visible={currentView === 0}/>
+          <NavigationView visible={currentView === 1}/>
 
           {/* <InstagramFeed visible={true}/> */}
         </Home>
@@ -48,4 +55,5 @@ const Home = styled.div`
   position: absolute;
   overflow: auto;
   width: 100vw;
+
 `;

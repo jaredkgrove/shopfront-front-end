@@ -71,7 +71,7 @@ const ListingImage = styled(Link)`
     font-size: 1em;
     margin: 1em;
     padding: 0.25em 1em;
-    background: ${props => props.image ? `url(${props.image.url_570xN})` : "red"};
+    background: ${props => props.image ? `url(${props.image.url_570xN})` : "grey"};
     background-size: cover;
 
     &:hover {
