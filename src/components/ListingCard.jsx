@@ -87,7 +87,9 @@ const Card = styled.div`
     display: inline-block;
     width: 345px;
     max-width: 95%;
+    min-width: 345px;
     max-height: 325px;
+    min-height: 290px;
     border-radius: 2px;
     box-shadow: -2px 4px 3px 4px hsl(187, 5%, 90%);
 `;

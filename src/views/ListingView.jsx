@@ -1,17 +1,7 @@
 import React, {useEffect} from "react";
-import { makeStyles } from '@material-ui/core/styles';
-const useStyles = makeStyles(theme => ({
-    
-    root: {
-      width: '95%'
-
-    },
-  }));
 
 
 const ListingView = ({listingData}) => {
-    const classes = useStyles();
-
     useEffect(() => {
         
     },[listingData])
@@ -34,7 +24,7 @@ const ListingView = ({listingData}) => {
     }
 
     return(
-        <div className={classes.root}>
+        <div style={{width: '95%'}}>
             {renderData()}
             {renderImages()}
         </div>
