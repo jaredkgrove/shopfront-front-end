@@ -57,7 +57,7 @@ const HomeView = () => {
           <WelcomeHeader visible={true}/>
           {/* <ProductsView visible={currentView === 1}/> */}
 
-          {/* <InstagramFeed visible={currentView === 1}/> */}
+          <InstagramFeed visible={true}/>
         </div>
     )
 }

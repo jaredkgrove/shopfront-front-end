@@ -1,36 +1,10 @@
 import React, {useEffect} from "react";
 import {fetchInstagramPosts} from '../actions/fetchInstagramPosts'
 import { connect } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-// import Grid from '@material-ui/core/Grid';
-const useStyles = makeStyles(theme => ({
-    root: {
-        boxSizing:'border-box',
-        // float: "right",
-        // width: '100%',
-        flexGrow: 1,
-        display:'flex',
-        flexDirection: 'column',
-        overflow: 'auto',
-        maxHeight: '100vh',
-        minWidth: '326px',
-        padding: '10px 10px 10px 10px',
-        transition: 'height 500ms ease-in-out, opacity 500ms ease-in-out',
-        // position:'absolute',
-        // top:'0'
+import styled from 'styled-components'
 
-    },
-    hidden: {
-        height:'0px',
-        opacity:'0'
-    },
-    post: {
-      // width: '100%'
-    }
-  }));
 
 const InstagramFeed = ( {fetchInstagramPosts, posts, visible} ) => {
-    const classes = useStyles();
     useEffect(() => {
         fetchInstagramPosts()
     }, []);
@@ -47,13 +21,13 @@ const InstagramFeed = ( {fetchInstagramPosts, posts, visible} ) => {
     }
 
     const renderInsta = (post) => {
-      return <div className={classes.post} dangerouslySetInnerHTML={getHTML(post)} />
+      return <div dangerouslySetInnerHTML={getHTML(post)} />
     }
 
     return(
-        <div className={  visible ? classes.root:`${classes.root} ${classes.hidden}` } >
-            {posts.map(post => renderInsta(post))}
-        </div>
+      <FeedWrapper onWheel={e => e.stopPropagation()}>
+        {posts.map(post => renderInsta(post))}
+      </FeedWrapper>
     )
 }
 const mapDispatchToProps = dispatch => {
@@ -71,3 +45,19 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, mapDispatchToProps)(InstagramFeed)
 
 
+const FeedWrapper = styled.div`
+  position: absolute;
+  top: 0px;
+  box-sizing: border-box;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  max-height: 100vh;
+  min-width: 326px;
+  padding: 10px 10px 10px 10px;
+`;
+
+// const Post = styled.div`
+
+// `;
