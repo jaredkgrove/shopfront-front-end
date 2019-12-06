@@ -76,5 +76,5 @@ const DropDownWrapper = styled.div`
     }
     position: absolute;
     top: 20px;
-    right: 10px;
+    right: 20px;
 `;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { Link } from 'react-router-dom';
 
@@ -6,9 +6,10 @@ import {fetchListingImages} from '../actions/fetchListingImages'
 import { connect } from 'react-redux';
 import styled from 'styled-components'
 
-const ListingCard = ({listingData, fetchListingImages}) => {
+const ListingCard = ({listingData, fetchListingImages, fullDisplay}) => {
     const [currentImage, setCurrentImage] = useState()
     const [cycleImages, setCycleImages] = useState(false)
+    const cardRef = useRef(null)
 
     useEffect(() =>{
         if(!listingData.images){
@@ -48,11 +49,30 @@ const ListingCard = ({listingData, fetchListingImages}) => {
         setCycleImages(false)
     } 
 
+    const getCardInfo = () => {
+        if(fullDisplay){
+            return (         
+                <>       
+
+                </>
+            )
+        }else{
+            return (         
+                <>       
+                <h1>{listingData.title}</h1>
+                </>
+            )
+        }
+    }
+
     return(   
-        <Card  onMouseEnter={handleMouseOver} onMouseLeave={stopCycle}>
-            <ListingImage to= {`/products/${listingData.listing_id}`} image={currentImage}></ListingImage>
-            <ExternalLink href={listingData.url} target="_blank" >Buy</ExternalLink>
-            <InternalLink to= {`/products/${listingData.listing_id}`} >Learn More</InternalLink>
+        <Card ref={cardRef}  onMouseEnter={handleMouseOver} onMouseLeave={stopCycle} full={fullDisplay}>
+            <CardImage to= {`/products/${listingData.listing_id}`} image={currentImage} full={fullDisplay}/>
+            <FullCardInfo visible={fullDisplay}>
+                <h1>{listingData.title}</h1>
+                <p>{listingData.description}</p>
+                <p>{listingData.price}</p>
+            </FullCardInfo>
         </Card>
     )
 }
@@ -65,43 +85,58 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(null, mapDispatchToProps)(ListingCard)
     
-const ListingImage = styled(Link)`
-    display: block;
-    height: 240px;
+const CardImage = styled(Link)`
+    transition: height 0.5s ease-in ${props => props.full ? '0.5s':''}, min-width 0.5s ease-in ${props => props.full ? '0.5s':''};
+    margin: 1em;
+    background: ${props => props.image ? `url(${props.full ? props.image.url_570xN:props.image.url_170x135})` : "grey"};
+    background-size: cover;
+    background-position: bottom;
+    min-width:${props => props.full ? '345px':'170px'};
+    min-height: 135px;
+`;
+// style={{float: 'left', width:`${fullDisplay ? '65%':'0px'}`, height:`${fullDisplay ? '100%':'0px'}`, textAlign: 'left', overflow: 'hidden'}}
+const FullCardInfo = styled.div`
+    overflow: hidden;
+    text-align: left;
     font-size: 1em;
     margin: 1em;
-    padding: 0.25em 1em;
-    background: ${props => props.image ? `url(${props.image.url_570xN})` : "grey"};
-    background-size: cover;
-
-    &:hover {
-        animation-name: fadeInOut;
-        animation-timing-function: ease-in-out;
-        animation-iteration-count: infinite;
-        animation-duration: 3s;
-    }
+    transition: opacity 0.5s ease-in ${props => props.visible ? '0.5s':''}
+    opacity:${props => props.visible ? '1':'0'};
 `;
 
+
+
 const Card = styled.div`
+    box-sizing: border-box;
     position: relative;
-    display: inline-block;
-    width: 345px;
-    max-width: 95%;
-    min-width: 345px;
-    max-height: 325px;
-    min-height: 290px;
+    display: flex;
+    transition: height 0.5s ease-in ${props => props.full ? '0.5s':''}, width 0.5s ease-in ${props => props.full ? '0.5s':''};
+    flex-direction:${props => props.full ? 'row':'row'};
+    justify-content: stretch;
+    clear: both;
+    height: ${props => props.full ? '325px':'135px'};
+    min-height: calc(135px + 4em);
+    margin: 1em;
     border-radius: 2px;
     box-shadow: -2px 4px 3px 4px hsl(187, 5%, 90%);
+    &:hover {
+        > a {
+            animation-name: fadeInOut;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 3s;
+        }
+    }
 `;
 
 const ExternalLink = styled.a`
     position: absolute;
     bottom: 0px;
-    left: 0px;
     text-decoration: none;
     color: hsl(187, 52%, 60%);
     display: inline-block;
-    width: 50%;
+    right: 25%;
+    width: 25%;
     border-radius: 2px;
     box-shadow: -1px 2px 1px 2px hsl(187, 5%, 90%);
     bottom: 0px;
@@ -110,11 +145,11 @@ const ExternalLink = styled.a`
 const InternalLink = styled(Link)`
     position: absolute;
     bottom: 0px;
-    right: 0px;
+    right 0px;
     text-decoration: none;
     color: hsl(187, 52%, 60%);
     display: inline-block;
-    width: 50%;
+    width: 25%;
     border-radius: 2px;
     box-shadow: -1px 2px 1px 2px hsl(187, 5%, 90%);
     bottom: 0px;
