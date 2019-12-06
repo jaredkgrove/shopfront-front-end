@@ -42,6 +42,7 @@ const Background = styled.div`
 `;
 
 const Title = styled.div`
+    opacity: 1;
     font-size: 10em;
     width: 100%;
     color: hsl(187, 5%, 90%);

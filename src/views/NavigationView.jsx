@@ -4,7 +4,7 @@ import InstagramFeed from "../containers/InstagramFeed";
 // import { Grid } from "@material-ui/core";
 import image1 from '../images/welcome.jpg'
 import image2 from '../images/image2.jpg'
-
+import styled from 'styled-components'
 
 // const useStyles = makeStyles(theme => ({
 //     root: {
@@ -32,20 +32,26 @@ const NavigationView = ({visible}) => {
 
     return(
         // <div className={visible ? classes.root:`${classes.root} ${classes.hidden}`}>
-        <div>
-            <div style={{flexGrow:'1', background: `url(${image2}), url(${image1}), url(${image2})`, backgroundSize:'contain, contain', backgroundRepeat: 'no-repeat, repeat', backgroundPosition: 'top, bottom'}}>
-                Our Products
-                
-            </div>
+        
+        <NavigationWrapper isVisible={visible}>
+            <div style={{flex:'1', height: '100%'}}>OUR PRODUCTS</div>
 
-            <div style={{flexGrow:'1'}}>WHO WE ARE</div>
+            <div style={{flex:'1',  height: '100%'}}>WHO WE ARE</div>
             {/* <InstagramFeed visible={true}/> */}
             
 
-        </div>
+        </NavigationWrapper>
     )
 }
 
 export default NavigationView
+
+
+const NavigationWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: ${props => props.isVisible ? '100vh' : '0px'};
+    width: 100%;
+`;
 
 
