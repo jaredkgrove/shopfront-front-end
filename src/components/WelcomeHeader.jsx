@@ -34,8 +34,7 @@ const Background = styled.div`
     > :nth-child(6) {
         animation-delay: 3s;
     }
-    transition: height 1s ease-in
-    height: ${props => props.isVisible ? '100vh' : '0vh'};
+    height: 100vh;
     background: url(${welcomeImage});
     background-size: cover;
     background-position: center;

@@ -1,8 +1,6 @@
 import React, {useEffect}  from "react";
 import InstagramFeed from "../containers/InstagramFeed";
 import WelcomeHeader from "../components/WelcomeHeader";
-import ProductsView from "./ProductsView";
-import { useHistory } from "react-router-dom";
 import styled from 'styled-components'
 import NavigationView from "./NavigationView";
 
@@ -38,7 +36,7 @@ const HomeView = () => {
     }
   }
     return(
-        <Home className='home-view' onWheel={handleScroll}>
+        <Home className='home-view' onWheel={handleScroll} view={currentView}>
           <WelcomeHeader visible={currentView === 0}/>
           <NavigationView visible={currentView === 1}/>
 
@@ -51,7 +49,8 @@ export default HomeView
 
 
 const Home = styled.div`
-  top: 0px;
+  top: ${props => props.view === 0 ? '0px' : '-100vh'};
+  transition: top 1s ease-in
   position: absolute;
   overflow: auto;
   width: 100vw;

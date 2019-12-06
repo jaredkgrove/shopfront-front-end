@@ -6,6 +6,8 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Header from './containers/Header'
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
+import DropDownMenu from './containers/DropDownMenu';
 
 
 
@@ -15,12 +17,14 @@ function App({location, match}) {
   return (
       <TransitionGroup>
         <TransitionStyles/>
+        <DropDownMenu/>
         <CSSTransition
                   key={location.pathname.split('/')[1]}
                   classNames="fade"
                   timeout={500}
         >            
           <Switch location={location}>
+              
               <Route exact path='/' render= {routerProps => <HomeView {...routerProps}/>}/>
               <Route path='/products' render= {routerProps => <ProductsView {...routerProps} />}/>  
 
@@ -38,34 +42,34 @@ export default withRouter(App);
 
 const TransitionStyles = createGlobalStyle`
   .fade-enter {
-    top: 100vh
+    left: 100vw;
   }
   .fade-enter.fade-enter-active {
-    top: 0px;
-    transition: top 0.5s;
+    left: 0px;
+    transition: left 0.5s;
   }
   .fade-exit {
-    top: 0px;
+    left: 0px;
   }
 
   .fade-exit.fade-exit-active {
-    top: 100vh;
-    transition: top 0.5s;
+    left: 100vw;
+    transition: left 0.5s;
   }
 
   .home-view.fade-enter {
-    top: -100vh
+    left: -100vw;
   }
   .home-view.fade-enter.fade-enter-active {
-    top: 0px;
-    transition: top 0.5s;
+    left: 0px;
+    transition: left 0.5s;
   }
   .home-view.fade-exit {
-    top: 0px;
+    left: 0px;
   }
 
   .home-view.fade-exit.fade-exit-active {
-    top: -100vh;
-    transition: top 0.5s;
+    left: -100vw;
+    transition: left 0.5s;
   }
 `
