@@ -17,15 +17,16 @@ const ProductView = (props) => {
     },[])
 
     return(
-        <ProductViewWrapper className='products-view'>
-          <ProductsListWrapper full={props.location.pathname === props.match.path}>
-              <ProductsList listings={props.listings} fullDisplay={props.location.pathname === props.match.path}/>
-          </ProductsListWrapper>
+        <ProductViewWrapper className='products-view' full={props.location.pathname === props.match.path}>
           <Route exact path='/products/:etsyId' render= {routerProps =>             
             <ListingViewWrapper>
                 <ListingView listingData={props.listings[props.listings.findIndex(listing => listing.listing_id == routerProps.match.params.etsyId)]} {...routerProps} />
             </ListingViewWrapper>}
           />
+          <ProductsListWrapper full={props.location.pathname === props.match.path}>
+              <ProductsList listings={props.listings} fullDisplay={props.location.pathname === props.match.path}/>
+          </ProductsListWrapper>
+
         </ProductViewWrapper>
     )
 }
@@ -53,11 +54,9 @@ const fadeIn = keyframes`
   }
   66%{
     display:block;
-  
     opacity:0;
   }
   100% {
-
     opacity:1;
   }
 `
@@ -70,10 +69,11 @@ const ProductViewWrapper = styled.div`
   width: 100%;
   height: 100%;
   display:flex;
-  justify-content: stretch;
+  justify-content: flex-end;
 `;
 
 const ListingViewWrapper = styled.div`
+    align-self: stretch;
     overflow: auto;
     animation-name: ${fadeIn};
     animation-timing-function: ease-in;
@@ -85,14 +85,14 @@ const ListingViewWrapper = styled.div`
 const ProductsListWrapper = styled.div`
   overflow: auto;
   max-height: 100vh;
-  display: inline-block;
+  display: block;
   float:left;
   min-height: calc(135px + 4em);
   ${props => props.full ? `
     transition: width 0.5s linear ;
     width: 100vw;
   ` : `
-  transition: width 0.5s linear 0.5s;
+    transition: width 0.5s linear 0.5s;
     width: calc(170px + 4em);
     min-width: calc(170px + 4em);
 

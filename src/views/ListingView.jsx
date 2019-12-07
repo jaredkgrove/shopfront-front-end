@@ -14,7 +14,7 @@ const ListingView = ({listingData}) => {
     const renderImages = () => {
         if(listingData){
             if(listingData.images){
-                return listingData.images.map(image => <img src={image.url_170x135} onClick={e => setCurrentImage(image.url_fullxfull)}/>)
+                return listingData.images.map(image => <img src={image.url_75x75} onClick={e => setCurrentImage(image.url_fullxfull)} style={{margin: '10px 5px 10px 5px'}}/>)
             }
         }
     }
@@ -32,11 +32,13 @@ const ListingView = ({listingData}) => {
 
     return(
         <>
-            <h1>{listingData ? listingData.title:''}</h1>
+            <p style={{fontSize: '3vw', margin: '10px'}}>{listingData ? listingData.title:''} </p>
             <PrimaryImage src={currentImage}></PrimaryImage>
-            {renderImages()}
-            <p>{listingData ? listingData.description:''}</p>
-            <p>{listingData ? listingData.price:''}</p>
+            {/* <div style={{display: 'flex', flexDirection: 'column', width:'75px'}}> */}
+                {renderImages()}
+            {/* </div> */}
+            <p style={{textAlign: 'left', margin: '0 auto;', width: '80%'}}>{listingData ? listingData.description:''}</p>
+            <p style={{textAlign: 'left', margin: '10px'}}>{listingData ? `$${listingData.price}`:''}</p>
             
        </>
     )
@@ -49,6 +51,7 @@ export default ListingView
 
 const PrimaryImage = styled.img`
   display: block;
+  margin: 0 auto;
   clear: both;
   width: 80%;
   height: 50%;

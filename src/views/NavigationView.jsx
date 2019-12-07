@@ -35,7 +35,7 @@ const NavigationPanel = styled(Link)`
     font-size: 5vw;
     color: hsl(187, 5%, 60%);
     &:hover{
-        color: hsl(187, 20%, 60%);
+        color: hsl(187, 60%, 30%);
     }
 `;
 
@@ -45,7 +45,7 @@ const NavigationText = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1em;
-    opacity: 0.5;
+    opacity: 0.75;
 `;
 
 const NavigationWrapper = styled.div`
@@ -53,6 +53,15 @@ const NavigationWrapper = styled.div`
     flex-direction: column;
     height: 100vh;
     width: 100%;
+    >:nth-child(3){
+        background: hsl(187, 20%, 70%);
+    }
+    >:nth-child(2){
+        background: hsl(187, 20%, 80%);
+    }
+    >:nth-child(1){
+        background: hsl(187, 20%, 90%);
+    }
 `;
 
 

@@ -66,8 +66,8 @@ const ListingCard = ({listingData, fetchListingImages, fullDisplay}) => {
     }
 
     return(   
-        <Card ref={cardRef}  onMouseEnter={handleMouseOver} onMouseLeave={stopCycle} full={fullDisplay}>
-            <CardImage to= {`/products/${listingData.listing_id}`} image={currentImage} full={fullDisplay}/>
+        <Card ref={cardRef} to= {`/products/${listingData.listing_id}`} onMouseEnter={handleMouseOver} onMouseLeave={stopCycle} full={fullDisplay}>
+            <CardImage  image={currentImage} full={fullDisplay}/>
             <FullCardInfo visible={fullDisplay}>
                 <h1>{listingData.title}</h1>
                 <p>{listingData.description}</p>
@@ -85,7 +85,7 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(null, mapDispatchToProps)(ListingCard)
     
-const CardImage = styled(Link)`
+const CardImage = styled.div`
     transition: height 0.5s ease-in ${props => props.full ? '0.5s':''}, min-width 0.5s ease-in ${props => props.full ? '0.5s':''};
     margin: 1em;
     background: ${props => props.image ? `url(${props.full ? props.image.url_570xN:props.image.url_170x135})` : "grey"};
@@ -100,17 +100,20 @@ const FullCardInfo = styled.div`
     text-align: left;
     font-size: 1em;
     margin: 1em;
-    transition: opacity 0.5s ease-in ${props => props.visible ? '0.5s':''}
+    transition: opacity 0.5s ease-in ${props => props.visible ? '1s':''}
     opacity:${props => props.visible ? '1':'0'};
 `;
 
 
 
-const Card = styled.div`
+const Card = styled(Link)`
+    color: inherit;
+    text-decoration: none;
     box-sizing: border-box;
     position: relative;
     display: flex;
-    transition: height 0.5s ease-in ${props => props.full ? '0.5s':''}, width 0.5s ease-in ${props => props.full ? '0.5s':''};
+    transition: height 0.5s ease-in ${props => props.full ? '0.5s':''};
+
     flex-direction:${props => props.full ? 'row':'row'};
     justify-content: stretch;
     clear: both;

@@ -30,17 +30,18 @@ const StyledLink = styled(Link)`
     text-decoration: none;
     display: block;
     color: hsl(187, 5%, 80%);
+    padding-right: 20px;
     &:hover{
         color: hsl(187, 20%, 60%);
     }
     font-size:calc(30px + 1.5vw);
-    float: left;
+    float: right;
     clear: both;
 `;
 
 const Menu = styled.span`
     position: absolute;
-    right: 0px;
+    left: 0px;
     top: -20px;
     height: 100vh;
     background: hsl(187, 5%, 30%);
@@ -65,10 +66,10 @@ const DropDownWrapper = styled.div`
         margin: 0;
     }
     >:nth-child(2){
-        ${props => props.open ? 'transform: rotate(45deg);':''}
+        ${props => props.open ? 'transform: rotate(-45deg);':''}
     }
     >:nth-child(4){
-        ${props => props.open ? 'transform: rotate(-45deg);':''}
+        ${props => props.open ? 'transform: rotate(45deg);':''}
     }
     >:nth-child(3){
         transition: opacity 1s;
@@ -76,5 +77,5 @@ const DropDownWrapper = styled.div`
     }
     position: absolute;
     top: 20px;
-    right: 20px;
+    left: 20px;
 `;
