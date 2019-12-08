@@ -63,6 +63,7 @@ const fadeIn = keyframes`
 
 
 const ProductViewWrapper = styled.div`
+  background: hsl(187, 10%, 95%);
   overflow: hidden;
   top: 0px;
   position: absolute;
@@ -73,6 +74,7 @@ const ProductViewWrapper = styled.div`
 `;
 
 const ListingViewWrapper = styled.div`
+    text-align: center;
     align-self: stretch;
     overflow: auto;
     animation-name: ${fadeIn};

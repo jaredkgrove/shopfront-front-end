@@ -1,5 +1,4 @@
 import React, {useEffect}  from "react";
-import InstagramFeed from "../containers/InstagramFeed";
 import WelcomeHeader from "../components/WelcomeHeader";
 import styled from 'styled-components'
 import NavigationView from "./NavigationView";
@@ -39,8 +38,6 @@ const HomeView = () => {
         <Home className='home-view' onWheel={handleScroll} view={currentView}>
           <WelcomeHeader visible={currentView === 0}/>
           <NavigationView visible={currentView === 1}/>
-
-          {/* <InstagramFeed visible={true}/> */}
         </Home>
     )
 }
@@ -50,9 +47,9 @@ export default HomeView
 
 const Home = styled.div`
   top: ${props => props.view === 0 ? '0px' : '-100vh'};
+  left: 0px;
   transition: top 1s ease-in
   position: absolute;
   overflow: auto;
   width: 100vw;
-
 `;

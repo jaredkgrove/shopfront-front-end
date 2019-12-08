@@ -3,11 +3,9 @@ import './App.css';
 import ProductsView from './views/ProductsView'
 import HomeView from './views/HomeView'
 import { Route, Switch, withRouter } from 'react-router-dom';
-import Header from './containers/Header'
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { createGlobalStyle } from 'styled-components'
-import styled from 'styled-components'
-import DropDownMenu from './containers/DropDownMenu';
+import SideMenu from './containers/SideMenu';
 
 
 
@@ -17,7 +15,7 @@ function App({location, match}) {
   return (
       <TransitionGroup>
         <TransitionStyles/>
-        <DropDownMenu/>
+        <SideMenu/>
         <CSSTransition
                   key={location.pathname.split('/')[1]}
                   classNames="fade"
@@ -27,10 +25,9 @@ function App({location, match}) {
               
               <Route exact path='/' render= {routerProps => <HomeView {...routerProps}/>}/>
               <Route path='/products' render= {routerProps => <ProductsView {...routerProps} />}/>  
-
+              <Route path='/about' render= {routerProps => <h1 style={{position: 'absolute', left: '0px', padding: '0px', margin: '0px', height: '100vh', width: '100vw', background:'hsl(187, 10%, 95%)'}}>Some cool stuff about j+b</h1>}/>  
+              <Route render={() => <div>Not Found</div>} />
           </Switch>
-                      
-            {/* <Route render={() => <div>Not Found</div>} /> */}
         </CSSTransition>
       </TransitionGroup>
   );
@@ -42,34 +39,40 @@ export default withRouter(App);
 
 const TransitionStyles = createGlobalStyle`
   .fade-enter {
-    left: 100vw;
+    z-index:1;
+    top: 100vh;
   }
   .fade-enter.fade-enter-active {
-    left: 0px;
-    transition: left 0.5s;
+    z-index:1;
+    top: 0px;
+    transition: top 0.5s;
   }
   .fade-exit {
-    left: 0px;
+    top: 0px;
+    z-index: 0;
   }
 
   .fade-exit.fade-exit-active {
-    left: 100vw;
-    transition: left 0.5s;
+    top: 100vh;
+    transition: top 0.5s;
+    z-index: 0;
   }
 
   .home-view.fade-enter {
-    left: -100vw;
+    z-index: -1;
+    top: 0px;
   }
   .home-view.fade-enter.fade-enter-active {
-    left: 0px;
-    transition: left 0.5s;
+    z-index: -1;
+    top: 0px;
   }
   .home-view.fade-exit {
-    left: 0px;
+    z-index: -1;
+    top: -100vh;
   }
 
   .home-view.fade-exit.fade-exit-active {
-    left: -100vw;
-    transition: left 0.5s;
+    z-index: -1;
+    top: -100vh;
   }
 `

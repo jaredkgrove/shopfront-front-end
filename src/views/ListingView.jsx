@@ -32,14 +32,11 @@ const ListingView = ({listingData}) => {
 
     return(
         <>
-            <p style={{fontSize: '3vw', margin: '10px'}}>{listingData ? listingData.title:''} </p>
+            <p style={{fontSize: '3vw', margin: '10px', color: 'hsl(187, 5%, 40%)'}}>{listingData ? listingData.title:''} </p>
             <PrimaryImage src={currentImage}></PrimaryImage>
-            {/* <div style={{display: 'flex', flexDirection: 'column', width:'75px'}}> */}
-                {renderImages()}
-            {/* </div> */}
-            <p style={{textAlign: 'left', margin: '0 auto;', width: '80%'}}>{listingData ? listingData.description:''}</p>
-            <p style={{textAlign: 'left', margin: '10px'}}>{listingData ? `$${listingData.price}`:''}</p>
-            
+            {renderImages()}
+            <p style={{display: 'inline-block', textAlign: 'left', margin: 'auto;', width: '80%', color: 'hsl(187, 5%, 40%)'}}>{listingData ? listingData.description:''}</p>
+            <p style={{display: 'inline-block', textAlign: 'left', margin: 'auto;', width: '80%', color: 'hsl(187, 5%, 40%)'}}>{listingData ? `$${listingData.price}`:''}</p>
        </>
     )
 }

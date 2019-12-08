@@ -14,14 +14,12 @@ const NavigationView = ({visible}) => {
             <NavigationPanel to='/products'>
                 <NavigationText >OUR PRODUCTS</NavigationText>
             </NavigationPanel>
-            <NavigationPanel>
-                <NavigationText>WHO WE ARE</NavigationText>
+            <NavigationPanel to='/about'>
+                <NavigationText >WHO WE ARE</NavigationText>
             </NavigationPanel>
-            <NavigationPanel>
-                <NavigationText>INSTAGRAM</NavigationText>
-            </NavigationPanel>
-
-
+            <ExternalNavigationPanel href='https://www.etsy.com/shop/CandlesByJared' target='_blank'>
+                <NavigationText>ETSY SHOP</NavigationText>
+            </ExternalNavigationPanel>
             {/* <InstagramFeed visible={true}/> */}
         </NavigationWrapper>
     )
@@ -30,6 +28,16 @@ const NavigationView = ({visible}) => {
 export default NavigationView
 
 const NavigationPanel = styled(Link)`
+    flex: 1;
+    position: relative;
+    font-size: 5vw;
+    color: hsl(187, 5%, 60%);
+    &:hover{
+        color: hsl(187, 60%, 30%);
+    }
+`;
+
+const ExternalNavigationPanel = styled.a`
     flex: 1;
     position: relative;
     font-size: 5vw;

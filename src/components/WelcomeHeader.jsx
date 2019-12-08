@@ -8,7 +8,7 @@ const WelcomeHeader = ({visible, goToView}) => {
 
     return(
         <Background isVisible={visible}>
-            <Title>J&B</Title>
+            <Title>j+b</Title>
             <SubTitle delay={0}>Simple</SubTitle>
             <SubTitle delay={0}> | </SubTitle>
             <SubTitle delay={0}>Modern</SubTitle>

@@ -25,7 +25,7 @@ const InstagramFeed = ( {fetchInstagramPosts, posts, visible} ) => {
     }
 
     return(
-      <FeedWrapper onWheel={e => e.stopPropagation()}>
+      <FeedWrapper onWheel={e => e.stopPropagation()} visible={visible}>
         {posts.map(post => renderInsta(post))}
       </FeedWrapper>
     )
@@ -48,9 +48,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(InstagramFeed)
 const FeedWrapper = styled.div`
   position: absolute;
   top: 0px;
+  left: 50px;
   box-sizing: border-box;
   flex-grow: 1;
-  display: flex;
+  display: ${props => props.visible ? 'flex' : 'none'};
   flex-direction: column;
   overflow: auto;
   max-height: 100vh;

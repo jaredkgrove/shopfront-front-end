@@ -67,7 +67,7 @@ const ListingCard = ({listingData, fetchListingImages, fullDisplay}) => {
 
     return(   
         <Card ref={cardRef} to= {`/products/${listingData.listing_id}`} onMouseEnter={handleMouseOver} onMouseLeave={stopCycle} full={fullDisplay}>
-            <CardImage  image={currentImage} full={fullDisplay}/>
+            <CardImage className='listing-image' image={currentImage} full={fullDisplay}/>
             <FullCardInfo visible={fullDisplay}>
                 <h1>{listingData.title}</h1>
                 <p>{listingData.description}</p>
@@ -107,7 +107,7 @@ const FullCardInfo = styled.div`
 
 
 const Card = styled(Link)`
-    color: inherit;
+    color: hsl(187, 5%, 40%);
     text-decoration: none;
     box-sizing: border-box;
     position: relative;
@@ -123,7 +123,8 @@ const Card = styled(Link)`
     border-radius: 2px;
     box-shadow: -2px 4px 3px 4px hsl(187, 5%, 90%);
     &:hover {
-        > a {
+        color: hsl(187, 5%, 60%);
+        > .listing-image {
             animation-name: fadeInOut;
             animation-timing-function: ease-in-out;
             animation-iteration-count: infinite;

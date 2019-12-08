@@ -1,30 +1,50 @@
 import React from "react";
 import styled from 'styled-components'
-import NavigationView from "../views/NavigationView";
 import { Link } from 'react-router-dom';
+import instagramLogo from '../images/instagram_logo.png'
+import InstagramFeed from "../containers/InstagramFeed";
 
-
-const DropDownMenu = ( {listings} ) => {
+const SideMenu = ( {listings} ) => {
     const [menuVisible, setMenuVisible] = React.useState(false);
+    const [feedVisible, setGeedVisible] = React.useState(false);
     
-    const handleClick = () => {
+    const handleHamburgerClick = () => {
         setMenuVisible(!menuVisible)
+        setGeedVisible(false)
+    }
+
+    const handleFeedClick = () => {
+        setMenuVisible(false)
+        setGeedVisible(!feedVisible)
     }
 
     return(
-        <DropDownWrapper onClick={handleClick} open={menuVisible}>
-            <Menu>
+        <>
+        <DropDownWrapper open={menuVisible}>
+            <Menu onClick={handleHamburgerClick}>
                 <StyledLink to='/'>Home</StyledLink>
                 <StyledLink to='/products'>Products</StyledLink>
+                <StyledLink to='/about'>About j+b</StyledLink>
             </Menu>
-            <div className='.icon'></div>
-            <div className='.icon'></div>
-            <div className='.icon'></div>
+            <InstagramFeed visible={feedVisible}/>
+            <MenuButton className='hamburger' onClick={handleHamburgerClick}>
+                <div ></div>
+                <div ></div>
+                <div ></div>
+            </MenuButton>
+            <MenuButton onClick={handleFeedClick}>
+                <img src={instagramLogo} alt=""  style={{width: '100%', height: '100%', opacity: '60%', background: `${feedVisible ? 'hsl(355, 68%, 67%)':'none'}`}}/>
+            </MenuButton>
+            
+            
         </DropDownWrapper>
+        
+        
+        </>
     )
 }
 
-export default DropDownMenu
+export default SideMenu
 
 const StyledLink = styled(Link)`
     text-decoration: none;
@@ -48,11 +68,15 @@ const Menu = styled.span`
     overflow: hidden;
 `
 
+const MenuButton = styled.div`
+    margin: 20px;
+    width: 35px;
+`
+
 const DropDownWrapper = styled.div`
     z-index: 1;
-    > div{
+    > .hamburger > div{
         z-index: 2;
-        width: 35px;
         height: 5px;
         background-color: ${props => props.open ? 'hsl(187, 5%, 80%)':'hsl(187, 5%, 40%)'};
         margin: 6px 0;
@@ -65,17 +89,17 @@ const DropDownWrapper = styled.div`
         padding: 0;
         margin: 0;
     }
-    >:nth-child(2){
+    > .hamburger :nth-child(1){
         ${props => props.open ? 'transform: rotate(-45deg);':''}
     }
-    >:nth-child(4){
+    > .hamburger :nth-child(3){
         ${props => props.open ? 'transform: rotate(45deg);':''}
     }
-    >:nth-child(3){
+    > .hamburger :nth-child(2){
         transition: opacity 1s;
         opacity: ${props => props.open ? '0':'1'};
     }
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 0px;
+    left: 0px;
 `;
