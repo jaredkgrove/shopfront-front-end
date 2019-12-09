@@ -50,7 +50,7 @@ const StyledLink = styled(Link)`
     text-decoration: none;
     display: block;
     color: hsl(187, 5%, 80%);
-    padding-right: 20px;
+    padding: 20px 20px 0px 0px;
     &:hover{
         color: hsl(187, 20%, 60%);
     }
@@ -62,14 +62,14 @@ const StyledLink = styled(Link)`
 const Menu = styled.span`
     position: absolute;
     left: 0px;
-    top: -20px;
+    top: 0px;
     height: 100vh;
     background: hsl(187, 5%, 30%);
     overflow: hidden;
 `
 
 const MenuButton = styled.div`
-    margin: 20px;
+    padding: 20px;
     width: 35px;
 `
 

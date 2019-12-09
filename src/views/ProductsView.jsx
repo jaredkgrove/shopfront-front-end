@@ -17,7 +17,7 @@ const ProductView = (props) => {
     },[])
 
     return(
-        <ProductViewWrapper className='products-view' full={props.location.pathname === props.match.path}>
+        <ProductViewWrapper className='products-view' >
           <Route exact path='/products/:etsyId' render= {routerProps =>             
             <ListingViewWrapper>
                 <ListingView listingData={props.listings[props.listings.findIndex(listing => listing.listing_id == routerProps.match.params.etsyId)]} {...routerProps} />
@@ -63,20 +63,21 @@ const fadeIn = keyframes`
 
 
 const ProductViewWrapper = styled.div`
-  background: hsl(187, 10%, 95%);
-  overflow: hidden;
-  top: 0px;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display:flex;
-  justify-content: flex-end;
+    background: hsl(187, 10%, 95%);
+    overflow: hidden;
+    top: 0px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: flex-end;
 `;
 
 const ListingViewWrapper = styled.div`
     text-align: center;
     align-self: stretch;
     overflow: auto;
+    position: relative;
     animation-name: ${fadeIn};
     animation-timing-function: ease-in;
     animation-iteration-count: 1;
@@ -96,8 +97,11 @@ const ProductsListWrapper = styled.div`
   ` : `
     transition: width 0.5s linear 0.5s;
     width: calc(170px + 4em);
-    min-width: calc(170px + 4em);
+    @media screen and (max-width: 500px) {
+      display: none;
+    }
 
+    min-width: calc(170px + 4em);
   `}
 
 `;

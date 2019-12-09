@@ -1,7 +1,7 @@
 import React, {useEffect}  from "react";
-import WelcomeHeader from "../components/WelcomeHeader";
+import WelcomePane from "../components/WelcomePane";
 import styled from 'styled-components'
-import NavigationView from "./NavigationView";
+import NavigationPane from "../components/NavigationPane";
 
 
 
@@ -36,8 +36,8 @@ const HomeView = () => {
   }
     return(
         <Home className='home-view' onWheel={handleScroll} view={currentView}>
-          <WelcomeHeader visible={currentView === 0}/>
-          <NavigationView visible={currentView === 1}/>
+          <WelcomePane visible={currentView === 0}/>
+          <NavigationPane visible={currentView === 1}/>
         </Home>
     )
 }

@@ -7,7 +7,7 @@ import image2 from '../images/image2.jpg'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 
-const NavigationView = ({visible}) => {
+const NavigationPane = ({visible}) => {
 
     return(
         <NavigationWrapper isVisible={visible}>
@@ -25,7 +25,7 @@ const NavigationView = ({visible}) => {
     )
 }
 
-export default NavigationView
+export default NavigationPane
 
 const NavigationPanel = styled(Link)`
     flex: 1;

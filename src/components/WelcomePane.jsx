@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import welcomeImage from '../images/welcome.jpg'
 import styled,  { keyframes } from 'styled-components'
 
-const WelcomeHeader = ({visible, goToView}) => {
+const WelcomePane = ({visible, goToView}) => {
 
     return(
         <Background isVisible={visible}>
@@ -14,12 +14,11 @@ const WelcomeHeader = ({visible, goToView}) => {
             <SubTitle delay={0}>Modern</SubTitle>
             <SubTitle delay={0}> | </SubTitle>
             <SubTitle delay={0}>Handmade</SubTitle>
-            {/* <Link to='/products'>PRODUCTS</Link> */}
         </Background>
     )
 }
 
-export default WelcomeHeader
+export default WelcomePane
 
 
 const Background = styled.div`
@@ -67,7 +66,7 @@ const SubTitle = styled.div`
     animation-timing-function: ease-in;
     animation-duration: 1s;
     animation-fill-mode: forwards;
-    font-size: 3em;
+    font-size: calc(3vw + 12px);
     width: 100%;
     color: hsl(187, 5%, 90%);
     transition

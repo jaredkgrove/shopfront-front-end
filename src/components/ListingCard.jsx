@@ -9,7 +9,6 @@ import styled from 'styled-components'
 const ListingCard = ({listingData, fetchListingImages, fullDisplay}) => {
     const [currentImage, setCurrentImage] = useState()
     const [cycleImages, setCycleImages] = useState(false)
-    const cardRef = useRef(null)
 
     useEffect(() =>{
         if(!listingData.images){
@@ -49,29 +48,12 @@ const ListingCard = ({listingData, fetchListingImages, fullDisplay}) => {
         setCycleImages(false)
     } 
 
-    const getCardInfo = () => {
-        if(fullDisplay){
-            return (         
-                <>       
-
-                </>
-            )
-        }else{
-            return (         
-                <>       
-                <h1>{listingData.title}</h1>
-                </>
-            )
-        }
-    }
-
     return(   
-        <Card ref={cardRef} to= {`/products/${listingData.listing_id}`} onMouseEnter={handleMouseOver} onMouseLeave={stopCycle} full={fullDisplay}>
+        <Card to= {`/products/${listingData.listing_id}`} onMouseEnter={handleMouseOver} onMouseLeave={stopCycle} full={fullDisplay}>
             <CardImage className='listing-image' image={currentImage} full={fullDisplay}/>
             <FullCardInfo visible={fullDisplay}>
                 <h1>{listingData.title}</h1>
                 <p>{listingData.description}</p>
-                <p>{listingData.price}</p>
             </FullCardInfo>
         </Card>
     )
@@ -86,22 +68,31 @@ const mapDispatchToProps = dispatch => {
 export default connect(null, mapDispatchToProps)(ListingCard)
     
 const CardImage = styled.div`
+    box-sizing: border-box;
     transition: height 0.5s ease-in ${props => props.full ? '0.5s':''}, min-width 0.5s ease-in ${props => props.full ? '0.5s':''};
     margin: 1em;
     background: ${props => props.image ? `url(${props.full ? props.image.url_570xN:props.image.url_170x135})` : "grey"};
     background-size: cover;
     background-position: bottom;
-    min-width:${props => props.full ? '345px':'170px'};
+    min-width:${props => props.full ? '325px':'170px'};
+    @media screen and (max-width: 500px) {
+        min-width:${props => props.full ? 'calc(100% - 2em)':'0px'};
+    }
     min-height: 135px;
 `;
-// style={{float: 'left', width:`${fullDisplay ? '65%':'0px'}`, height:`${fullDisplay ? '100%':'0px'}`, textAlign: 'left', overflow: 'hidden'}}
 const FullCardInfo = styled.div`
-    overflow: hidden;
+    overflow: auto;
     text-align: left;
     font-size: 1em;
+    > h1{
+        font-size: 1.25em;
+    }
     margin: 1em;
     transition: opacity 0.5s ease-in ${props => props.visible ? '1s':''}
     opacity:${props => props.visible ? '1':'0'};
+    @media screen and (max-width: 500px) {
+        display:${props => props.full ? '':'none'};
+    }
 `;
 
 
@@ -109,7 +100,7 @@ const FullCardInfo = styled.div`
 const Card = styled(Link)`
     color: hsl(187, 5%, 40%);
     text-decoration: none;
-    box-sizing: border-box;
+
     position: relative;
     display: flex;
     transition: height 0.5s ease-in ${props => props.full ? '0.5s':''};
@@ -122,6 +113,9 @@ const Card = styled(Link)`
     margin: 1em;
     border-radius: 2px;
     box-shadow: -2px 4px 3px 4px hsl(187, 5%, 90%);
+    @media screen and (max-width: 800px) {
+        font-size: 0.8em;
+    }
     &:hover {
         color: hsl(187, 5%, 60%);
         > .listing-image {
@@ -133,18 +127,7 @@ const Card = styled(Link)`
     }
 `;
 
-const ExternalLink = styled.a`
-    position: absolute;
-    bottom: 0px;
-    text-decoration: none;
-    color: hsl(187, 52%, 60%);
-    display: inline-block;
-    right: 25%;
-    width: 25%;
-    border-radius: 2px;
-    box-shadow: -1px 2px 1px 2px hsl(187, 5%, 90%);
-    bottom: 0px;
-`;
+
 
 const InternalLink = styled(Link)`
     position: absolute;
