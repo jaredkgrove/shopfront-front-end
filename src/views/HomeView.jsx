@@ -16,6 +16,7 @@ const HomeView = () => {
   }, []);
 
   const handleScroll = (e) => {
+    e.preventDefault()
     if(e.deltaY > 0){
       nextView()
     }else{
@@ -35,7 +36,7 @@ const HomeView = () => {
     }
   }
     return(
-        <Home className='home-view' onWheel={handleScroll} view={currentView}>
+        <Home className='home-view' onWheel={handleScroll} onTouchMove={handleScroll} view={currentView}>
           <WelcomePane visible={currentView === 0}/>
           <NavigationPane visible={currentView === 1}/>
         </Home>

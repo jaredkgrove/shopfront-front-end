@@ -20,7 +20,6 @@ const NavigationPane = ({visible}) => {
             <ExternalNavigationPanel href='https://www.etsy.com/shop/CandlesByJared' target='_blank'>
                 <NavigationText>ETSY SHOP</NavigationText>
             </ExternalNavigationPanel>
-            {/* <InstagramFeed visible={true}/> */}
         </NavigationWrapper>
     )
 }
