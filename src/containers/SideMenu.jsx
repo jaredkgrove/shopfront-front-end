@@ -69,17 +69,17 @@ const Menu = styled.span`
 `
 
 const MenuButton = styled.div`
-    padding: 20px;
-    width: 35px;
+    padding: 10px;
+    width: 25px;
 `
 
 const DropDownWrapper = styled.div`
     z-index: 1;
     > .hamburger > div{
         z-index: 2;
-        height: 5px;
+        height: 4px;
         background-color: ${props => props.open ? 'hsl(187, 5%, 80%)':'hsl(187, 5%, 40%)'};
-        margin: 6px 0;
+        margin: 4px 0;
         transition: transform 1s;
     }
     > span{

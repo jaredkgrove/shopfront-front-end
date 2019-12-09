@@ -48,14 +48,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(InstagramFeed)
 const FeedWrapper = styled.div`
   position: absolute;
   top: 0px;
-  left: 50px;
+  left: 30px;
   box-sizing: border-box;
   flex-grow: 1;
   display: ${props => props.visible ? 'flex' : 'none'};
   flex-direction: column;
   overflow: auto;
   max-height: 100vh;
-  min-width: 326px;
+  width: 326px;
+  max-width: calc(100vw - 35px);
   padding: 10px 10px 10px 10px;
 `;
 
