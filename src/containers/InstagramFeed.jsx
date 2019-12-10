@@ -10,7 +10,6 @@ const InstagramFeed = ( {fetchInstagramPosts, posts, visible} ) => {
     }, []);
 
     useEffect(() => {
-        console.log(posts)
         if(window.instgrm){
             window.instgrm.Embeds.process()
         }
@@ -60,6 +59,3 @@ const FeedWrapper = styled.div`
   padding: 10px 10px 10px 10px;
 `;
 
-// const Post = styled.div`
-
-// `;
