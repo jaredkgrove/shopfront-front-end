@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
 import ProductsList from "../containers/ProductsList";
 import { Route } from 'react-router-dom';
@@ -6,7 +6,7 @@ import ListingView from './ListingView'
 
 import {fetchShopListings} from '../actions/fetchShopListings'
 import { connect } from 'react-redux';
-import styled, {keyframes, css} from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 
 
 const ProductView = (props) => {
@@ -14,13 +14,13 @@ const ProductView = (props) => {
       if(!props.listings.length){
         props.fetchShopListings()
       }
-    },[])
+    },[props])
 
     return(
         <ProductViewWrapper className='products-view' >
           <Route exact path='/products/:etsyId' render= {routerProps =>             
             <ListingViewWrapper>
-                <ListingView listingData={props.listings[props.listings.findIndex(listing => listing.listing_id == routerProps.match.params.etsyId)]} {...routerProps} />
+                <ListingView listingData={props.listings[props.listings.findIndex(listing => listing.listing_id === parseInt(routerProps.match.params.etsyId))]} {...routerProps} />
             </ListingViewWrapper>}
           />
           <ProductsListWrapper full={props.location.pathname === props.match.path}>

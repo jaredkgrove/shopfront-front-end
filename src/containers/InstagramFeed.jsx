@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const InstagramFeed = ( {fetchInstagramPosts, posts, visible} ) => {
     useEffect(() => {
         fetchInstagramPosts()
-    }, []);
+    }, [fetchInstagramPosts]);
 
     useEffect(() => {
         if(window.instgrm){
@@ -16,12 +16,10 @@ const InstagramFeed = ( {fetchInstagramPosts, posts, visible} ) => {
     }, [posts]);
 
     const getHTML = (post) => {
-      return {__html: post}
+      return {__html: post.html}
     }
 
-    const renderInsta = (post) => {
-      return <div dangerouslySetInnerHTML={getHTML(post)} />
-    }
+    const renderInsta = (post) => <div key={post.media_id} dangerouslySetInnerHTML={getHTML(post)} />
 
     return(
       <FeedWrapper onWheel={e => e.stopPropagation()} visible={visible}>

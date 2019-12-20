@@ -50,7 +50,6 @@ const Header = (props) => {
     },[])
 
     const handleChange = (event, newValue) => {
-      console.log(newValue)
         setValue(newValue);
     };
   

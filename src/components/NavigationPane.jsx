@@ -1,14 +1,8 @@
-import React, {useEffect}  from "react";
-// import { makeStyles } from "@material-ui/core/styles";
-import InstagramFeed from "../containers/InstagramFeed";
-// import { Grid } from "@material-ui/core";
-import image1 from '../images/welcome.jpg'
-import image2 from '../images/image2.jpg'
+import React  from "react";
 import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 
 const NavigationPane = ({visible}) => {
-
     return(
         <NavigationWrapper isVisible={visible}>
             <NavigationPanel to='/products'>

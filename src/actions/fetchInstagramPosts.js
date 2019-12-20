@@ -25,7 +25,7 @@ const fetchIndividualPosts = (shortcodes, dispatch) => {
         .then(resp => resp.json())
         .then(json => {
             dispatch({type: 'ADD_POST', 
-            payload: json.html
+            payload: json
         })
     })
 

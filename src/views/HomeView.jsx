@@ -16,7 +16,6 @@ const HomeView = () => {
   }, []);
 
   const handleScroll = (e) => {
-    e.preventDefault()
     if(e.deltaY > 0){
       nextView()
     }else{

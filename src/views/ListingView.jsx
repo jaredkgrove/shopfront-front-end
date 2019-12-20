@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import styled, {keyframes, css} from 'styled-components'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 
 const ListingView = ({listingData}) => {
@@ -14,7 +14,7 @@ const ListingView = ({listingData}) => {
     const renderImages = () => {
         if(listingData){
             if(listingData.images){
-                return listingData.images.map(image => <img src={image.url_75x75} onClick={e => setCurrentImage(image.url_fullxfull)} style={{margin: '10px 5px 10px 5px'}}/>)
+                return listingData.images.map(image => <img key={image.url_75x75} src={image.url_75x75} alt={`${listingData.title}`}  onClick={e => setCurrentImage(image.url_fullxfull)} style={{margin: '10px 5px 10px 5px'}}/>)
             }
         }
     }
@@ -27,7 +27,7 @@ const ListingView = ({listingData}) => {
             </BackToProducts>
             <PrimaryImage src={currentImage}></PrimaryImage>
             {renderImages()}
-            <p style={{fontWeight: 'bold', display: 'inline-block', textAlign: 'left', margin: 'auto;', width: '80%', color: 'hsl(187, 5%, 40%)'}}>{listingData ? listingData.title:''} </p>
+            <p style={{fontWeight: 'bold', display: 'inline-block', textAlign: 'left', margin: 'auto', width: '80%', color: 'hsl(187, 5%, 40%)'}}>{listingData ? listingData.title:''} </p>
             <p style={{display: 'inline-block', textAlign: 'left', margin: 'auto;', width: '80%', color: 'hsl(187, 5%, 40%)'}}>{listingData ? `$${listingData.price}`:''}
                 <ExternalLink href={listingData ? listingData.url:''} target='_blank'>Buy On Etsy</ExternalLink>
             </p>

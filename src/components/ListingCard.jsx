@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-
 import {fetchListingImages} from '../actions/fetchListingImages'
 import { connect } from 'react-redux';
 import styled from 'styled-components'
@@ -15,7 +13,7 @@ const ListingCard = ({listingData, fetchListingImages, fullDisplay}) => {
             fetchListingImages(listingData.listing_id)
         }
     }
-    ,[]);
+    ,[listingData.listing_id, listingData.images, fetchListingImages]);
 
     useEffect(() =>{
         if(listingData.images){
@@ -37,7 +35,7 @@ const ListingCard = ({listingData, fetchListingImages, fullDisplay}) => {
             }, 3000);
             return () => clearInterval(id);
         }
-    }, [cycleImages]);
+    }, [cycleImages, currentImage, listingData.images]);
 
 
     const handleMouseOver = () => {
@@ -126,20 +124,3 @@ const Card = styled(Link)`
         }
     }
 `;
-
-
-
-const InternalLink = styled(Link)`
-    position: absolute;
-    bottom: 0px;
-    right 0px;
-    text-decoration: none;
-    color: hsl(187, 52%, 60%);
-    display: inline-block;
-    width: 25%;
-    border-radius: 2px;
-    box-shadow: -1px 2px 1px 2px hsl(187, 5%, 90%);
-    bottom: 0px;
-`;
-
-// to: /products/${props => props.listingData.listing_id};
