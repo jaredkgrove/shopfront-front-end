@@ -96,7 +96,7 @@ const FullCardInfo = styled.div`
 
 
 const Card = styled(Link)`
-    color: hsl(187, 5%, 40%);
+    color: hsl(187, 5%, 60%);
     text-decoration: none;
 
     position: relative;
@@ -115,7 +115,7 @@ const Card = styled(Link)`
         font-size: 0.8em;
     }
     &:hover {
-        color: hsl(187, 5%, 60%);
+        color: hsl(187, 5%, 40%);
         > .listing-image {
             animation-name: fadeInOut;
             animation-timing-function: ease-in-out;
