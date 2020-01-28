@@ -6,16 +6,16 @@ import InstagramFeed from "../containers/InstagramFeed";
 
 const SideMenu = ( {listings} ) => {
     const [menuVisible, setMenuVisible] = React.useState(false);
-    const [feedVisible, setGeedVisible] = React.useState(false);
+    const [feedVisible, setFeedVisible] = React.useState(false);
     
     const handleHamburgerClick = () => {
         setMenuVisible(!menuVisible)
-        setGeedVisible(false)
+        setFeedVisible(false)
     }
 
     const handleFeedClick = () => {
         setMenuVisible(false)
-        setGeedVisible(!feedVisible)
+        setFeedVisible(!feedVisible)
     }
 
     return(
